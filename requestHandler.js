@@ -18,7 +18,47 @@ function main(response) {
     response.end();
 }
 
+function redRacket(response) {
+    fs.readFile('./img/redRacket.png', function(err, data) {
+        response.writeHead(200, {'Content-Type' : 'text/html'});
+        response.write(data);
+        response.end();
+    }) 
+}
+
+function blueRacket(response) {
+    fs.readFile('./img/blueRacket.png', function(err, data) {
+        response.writeHead(200, {'Content-Type' : 'text/html'});
+        response.write(data);
+        response.end();
+    }) 
+}
+
+function blackRacket(response) {
+    fs.readFile('./img/blackRacket.png', function(err, data) {
+        response.writeHead(200, {'Content-Type' : 'text/html'});
+        response.write(data);
+        response.end();
+    }) 
+}
+
+function mainCss(response) {
+    fs.readFile('./main.css', function(err, data) {
+        response.writeHead(200, {'Content-Type' : 'text/css'}); 
+        response.write(data);
+        response.end();
+    });
+}
+
 let handle = {};            // key:value
 handle['/'] = main;
+
+/* image directory */
+handle['/img/redRacket.png'] = redRacket;
+handle['/img/blueRacket.png'] = blueRacket;
+handle['/img/blackRacket.png'] = blackRacket;
+
+/* css */
+handle['/main.css'] = mainCss;
 
 exports.handle = handle;
